@@ -13,5 +13,8 @@
     "tree"
   ],
   "author": "NJ de Jong",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.5.3"
+  }
 }
