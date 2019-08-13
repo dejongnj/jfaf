@@ -1,0 +1,17 @@
+{
+  "name": "jfaf",
+  "version": "0.0.1",
+  "description": "Builds a json folder structure with optional meta-data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "folder",
+    "file",
+    "json",
+    "tree"
+  ],
+  "author": "NJ de Jong",
+  "license": "ISC"
+}
