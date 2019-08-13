@@ -5,6 +5,9 @@
     "declaration": true,
     "outDir": "./dist",
     "strict": true,
-    "incremental": true
-  }
+    "incremental": true,
+    "moduleResolution": "node"
+  },
+  "include": ["lib/**/*"],
+  "exclude": ["node_modules", "test"]
 }

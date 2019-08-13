@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "tsc -w & nodemon lib/index.ts"
+    "watch": "tsc -w"
   },
   "keywords": [
     "folder",
@@ -17,6 +17,7 @@
   "author": "NJ de Jong",
   "license": "ISC",
   "devDependencies": {
+    "tslint": "^5.18.0",
     "typescript": "^3.5.3"
   },
   "dependencies": {
