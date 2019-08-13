@@ -2,11 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var path = require("path");
-var defaultFileDescription = {
-    id: null,
-    title: null,
-    description: null
-};
 exports.shouldIncludeFile = function (dirent, prohibitedList) {
     if (prohibitedList === void 0) { prohibitedList = []; }
     return dirent.isFile() && !prohibitedList.includes(dirent.name);
@@ -28,30 +23,39 @@ exports.pureAssign = function () {
     return Object.assign.apply(Object, [{}].concat(args));
 };
 // // const removeExtraForwardSlashes = string => string
-// export const formPath = basePath => (...pathSegments) => paths.reduce((pathString, pathSegment) => `${pathString}/${pathSegment}`, basePath).replace(/\/\//g, '/')
+// export const formPath = basePath => (...pathSegments) => 
+// paths.reduce((pathString, pathSegment) => `${pathString}/${pathSegment}`, basePath).replace(/\/\//g, '/')
 // // const fileDirentToPath = relativePath => dirent => `${relativePath}/${dirent.name}`.replace(/\/\//g, '/')
-exports.linkAdder = function (relativeFolderPath) { return function (fileData) { return exports.pureAssign(fileData, { link: relativeFolderPath + "/" + fileData.filename }); }; };
-exports.sortFolderContentList = function (absolutePath) { return function (folderContentsList) { return folderContentsList
-    .reduce(function (sortedObj, dirent) {
-    if (dirent.isDirectory()) { // folders
-        sortedObj.folders.push(dirent);
-    }
-    else if (exports.shouldIncludeFile(dirent)) { // files
-        if (exports.isJsonFile(dirent))
-            sortedObj.jsonFiles[dirent.name] = true;
-        sortedObj.fileNames.push(dirent.name);
-        if (exports.isMetaFile(dirent, ['meta.json'])) { // meta files
-            sortedObj.metaFiles.push({
-                filename: dirent.name,
-                contentPromise: exports.getJsonPromise(exports.readFileContents(path.resolve(absolutePath, dirent.name)))
-            });
-        }
-    }
-    ;
-    return sortedObj;
-}, {
-    fileNames: [],
-    folders: [],
-    jsonFiles: {},
-    metaFiles: []
-}); }; };
+exports.linkAdder = function (relativeFolderPath) {
+    return function (fileData) { return exports.pureAssign(fileData, { link: relativeFolderPath + "/" + fileData.filename }); };
+};
+exports.sortFolderContentList = function (absolutePath, options) {
+    if (options === void 0) { options = {}; }
+    return function (folderContentsList) {
+        var _a = options.metaFileNames, metaFileNames = _a === void 0 ? ["meta.json"] : _a;
+        return folderContentsList
+            .reduce(function (sortedObj, dirent) {
+            if (dirent.isDirectory()) { // folders
+                sortedObj.folders.push(dirent);
+            }
+            else if (exports.shouldIncludeFile(dirent)) { // files
+                if (exports.isJsonFile(dirent)) {
+                    sortedObj.jsonFiles[dirent.name] = true;
+                }
+                sortedObj.fileNames.push(dirent.name);
+                if (exports.isMetaFile(dirent, metaFileNames)) { // meta files
+                    sortedObj.metaFiles.push({
+                        contentPromise: exports.getJsonPromise(exports.readFileContents(path.resolve(absolutePath, dirent.name))),
+                        filename: dirent.name,
+                    });
+                }
+            }
+            return sortedObj;
+        }, {
+            fileNames: [],
+            folders: [],
+            jsonFiles: {},
+            metaFiles: [],
+        });
+    };
+};

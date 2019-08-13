@@ -39,33 +39,35 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var path = require("path");
 var utils_1 = require("./utils");
-var count = 1;
 var getFolderContents = function (rootPath, folderPath, options) {
     if (options === void 0) { options = {}; }
+    var _a = options.filenameKey, filenameKey = _a === void 0 ? "filename" : _a;
     var absolutePath = path.resolve(rootPath, folderPath);
     return fs.promises.readdir(absolutePath, { withFileTypes: true })
         .then(function (folderContentsList) {
         // sort folder contents into files folders and meta files
-        console.log(utils_1.sortFolderContentList);
-        var _a = utils_1.sortFolderContentList(absolutePath)(folderContentsList), fileNames = _a.fileNames, folders = _a.folders, jsonFiles = _a.jsonFiles, metaFiles = _a.metaFiles;
+        var _a = utils_1.sortFolderContentList(absolutePath, options)(folderContentsList), fileNames = _a.fileNames, folders = _a.folders, jsonFiles = _a.jsonFiles, metaFiles = _a.metaFiles;
         var filePromises = fileNames.map(function (filename) {
             var jsonFileName = filename + ".json";
             return new Promise(function (resolve, reject) {
-                if (!jsonFiles[jsonFileName])
+                if (!jsonFiles[jsonFileName]) {
                     resolve({});
-                else
+                }
+                else {
                     resolve(utils_1.getJsonPromise(utils_1.readFileContents(path.resolve(absolutePath, jsonFileName))));
+                }
             })
                 .then(function (metaData) {
+                var _a;
                 if (metaData === void 0) { metaData = {}; }
-                return utils_1.pureAssign(metaData, { filename: filename });
+                return utils_1.pureAssign(metaData, (_a = {}, _a[filenameKey] = filename, _a));
             })
                 .then(utils_1.linkAdder(folderPath));
         });
         var folderPromises = folders.map(function (dirent) {
-            var _folderName = dirent.name;
-            var _folderPath = folderPath + "/" + dirent.name;
-            return builder(_folderPath).then(function (folderJson) { return utils_1.pureAssign({ _folderName: _folderName, _folderPath: _folderPath }, folderJson); });
+            var folderName1 = dirent.name;
+            var folderPath2 = folderPath + "/" + dirent.name;
+            return builder(folderPath2).then(function (folderJson) { return utils_1.pureAssign({ folderName1: folderName1, folderPath2: folderPath2 }, folderJson); });
         });
         return { filePromises: filePromises, folderPromises: folderPromises, jsonFiles: jsonFiles, metaFiles: metaFiles };
     })
@@ -79,7 +81,7 @@ var builder = function (folderPath, options) {
             switch (_c.label) {
                 case 0:
                     _a = options.rootPath, rootPath = _a === void 0 ? process.cwd() : _a;
-                    return [4 /*yield*/, getFolderContents(rootPath, folderPath)];
+                    return [4 /*yield*/, getFolderContents(rootPath, folderPath, options)];
                 case 1:
                     folderContent = _c.sent();
                     metaDataPromises = Promise.all(folderContent.metaFiles.map(function (file) { return file.contentPromise; }));

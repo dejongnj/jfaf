@@ -1,19 +1,19 @@
-import builder from './builder'
+import builder from "./builder";
 
-interface GlobalOptionsObject {
-  rootDir:string
+interface IGlobalOptionsObject {
+  rootDir: string;
 }
 
-// interface IPerson { 
-//   firstName:string, 
-//   lastName:string, 
-//   sayHi: ()=>string 
-// } 
+// interface IPerson {
+//   firstName:string,
+//   lastName:string,
+//   sayHi: ()=>string
+// }
 
 const creator = async () => {
-  const a = await builder('test/test-folder-structures/test1 - default', {})
-  console.log(a)
-} 
+  const a = await builder("test/test-folder-structures/test1 - default", {});
+  console.log(a);
+};
 
-creator()
-module.exports = creator
+creator();
+module.exports = creator;
