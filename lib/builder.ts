@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
-import { getJsonPromise, linkAdder, pureAssign, readFileContents, sortFolderContentList } from "./utils";
+import { IBuildOptions } from "./types";
+import { getJsonPromise, getStatData, linkAdder, pureAssign, readFileContents, sortFolderContentList } from "./utils";
 
 interface IGetFolderContentResponse {
   filePromises: Array<Promise<any>>;
@@ -9,18 +10,19 @@ interface IGetFolderContentResponse {
   metaFiles: object[];
 }
 
-interface IBuildOptions {
-  rootPath?: string;
-  filenameKey?: string;
-  metaFileNames?: string[];
-}
-
 const getFolderContents = (rootPath: string, folderPath: string, options: IBuildOptions = {}): any => {
   const { filenameKey = "filename" } = options;
+  const { folderNameKey = "folderName" } = options;
+  const { folderPathKey = "folderPath" } = options;
   const absolutePath = path.resolve(rootPath, folderPath);
-  return fs.promises.readdir(absolutePath, { withFileTypes: true })
-    .then((folderContentsList) => {
+
+  return Promise.all([
+    fs.promises.readdir(absolutePath, { withFileTypes: true }),
+    fs.promises.stat(absolutePath),
+  ])
+    .then(([folderContentsList, folderStat]) => {
       // sort folder contents into files folders and meta files
+      console.log(folderStat);
       const {
         fileNames,
         folders,
@@ -30,21 +32,27 @@ const getFolderContents = (rootPath: string, folderPath: string, options: IBuild
 
       const filePromises = fileNames.map((filename: string) => {
         const jsonFileName = `${filename}.json`;
-        return new Promise((resolve, reject) => {
+        return Promise.all([new Promise((resolve, reject) => {
           if (!jsonFiles[jsonFileName]) {
             resolve({});
           } else {
             resolve(getJsonPromise(readFileContents(path.resolve(absolutePath, jsonFileName))));
           }
+        }), fs.promises.stat(path.resolve(absolutePath, filename))])
+        .then(([metaData = {}, fstatData]) => {
+          const statData = getStatData(fstatData);
+          return pureAssign(metaData, statData, { [filenameKey]: filename });
         })
-        .then((metaData = {}) => pureAssign(metaData, { [filenameKey]: filename }))
         .then(linkAdder(folderPath));
       });
 
       const folderPromises = folders.map((dirent: fs.Dirent) => {
-        const folderName1 = dirent.name;
-        const folderPath2 = `${folderPath}/${dirent.name}`;
-        return builder(folderPath2).then((folderJson) => pureAssign({ folderName1, folderPath2 }, folderJson));
+        const thisFolderPath = `${folderPath}/${dirent.name}`;
+        const folderData = {
+          [folderNameKey]: dirent.name,
+          [folderPathKey]: thisFolderPath,
+        };
+        return builder(thisFolderPath, options).then((folderJson) => pureAssign(folderData, folderJson));
       });
 
       return { filePromises, folderPromises, jsonFiles, metaFiles };
@@ -52,9 +60,10 @@ const getFolderContents = (rootPath: string, folderPath: string, options: IBuild
     .catch((err) => console.log(err));
 };
 
-
-
-const builder = async (folderPath: string, options: IBuildOptions = {}) => {
+interface IBuilderResponse { // Promise for JSON Object
+  [key: string]: any;
+}
+const builder = async (folderPath: string, options: IBuildOptions = {}): Promise<IBuilderResponse> => {
   const { rootPath = process.cwd() } = options;
   const folderContent = await getFolderContents(rootPath, folderPath, options);
   const metaDataPromises = Promise.all(folderContent.metaFiles.map((file: any) => file.contentPromise));

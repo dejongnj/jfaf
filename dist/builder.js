@@ -42,32 +42,44 @@ var utils_1 = require("./utils");
 var getFolderContents = function (rootPath, folderPath, options) {
     if (options === void 0) { options = {}; }
     var _a = options.filenameKey, filenameKey = _a === void 0 ? "filename" : _a;
+    var _b = options.folderNameKey, folderNameKey = _b === void 0 ? "folderName" : _b;
+    var _c = options.folderPathKey, folderPathKey = _c === void 0 ? "folderPath" : _c;
     var absolutePath = path.resolve(rootPath, folderPath);
-    return fs.promises.readdir(absolutePath, { withFileTypes: true })
-        .then(function (folderContentsList) {
+    return Promise.all([
+        fs.promises.readdir(absolutePath, { withFileTypes: true }),
+        fs.promises.stat(absolutePath),
+    ])
+        .then(function (_a) {
+        var folderContentsList = _a[0], folderStat = _a[1];
         // sort folder contents into files folders and meta files
-        var _a = utils_1.sortFolderContentList(absolutePath, options)(folderContentsList), fileNames = _a.fileNames, folders = _a.folders, jsonFiles = _a.jsonFiles, metaFiles = _a.metaFiles;
+        console.log(folderStat);
+        var _b = utils_1.sortFolderContentList(absolutePath, options)(folderContentsList), fileNames = _b.fileNames, folders = _b.folders, jsonFiles = _b.jsonFiles, metaFiles = _b.metaFiles;
         var filePromises = fileNames.map(function (filename) {
             var jsonFileName = filename + ".json";
-            return new Promise(function (resolve, reject) {
-                if (!jsonFiles[jsonFileName]) {
-                    resolve({});
-                }
-                else {
-                    resolve(utils_1.getJsonPromise(utils_1.readFileContents(path.resolve(absolutePath, jsonFileName))));
-                }
-            })
-                .then(function (metaData) {
-                var _a;
-                if (metaData === void 0) { metaData = {}; }
-                return utils_1.pureAssign(metaData, (_a = {}, _a[filenameKey] = filename, _a));
+            return Promise.all([new Promise(function (resolve, reject) {
+                    if (!jsonFiles[jsonFileName]) {
+                        resolve({});
+                    }
+                    else {
+                        resolve(utils_1.getJsonPromise(utils_1.readFileContents(path.resolve(absolutePath, jsonFileName))));
+                    }
+                }), fs.promises.stat(path.resolve(absolutePath, filename))])
+                .then(function (_a) {
+                var _b;
+                var _c = _a[0], metaData = _c === void 0 ? {} : _c, fstatData = _a[1];
+                var statData = utils_1.getStatData(fstatData);
+                return utils_1.pureAssign(metaData, statData, (_b = {}, _b[filenameKey] = filename, _b));
             })
                 .then(utils_1.linkAdder(folderPath));
         });
         var folderPromises = folders.map(function (dirent) {
-            var folderName1 = dirent.name;
-            var folderPath2 = folderPath + "/" + dirent.name;
-            return builder(folderPath2).then(function (folderJson) { return utils_1.pureAssign({ folderName1: folderName1, folderPath2: folderPath2 }, folderJson); });
+            var _a;
+            var thisFolderPath = folderPath + "/" + dirent.name;
+            var folderData = (_a = {},
+                _a[folderNameKey] = dirent.name,
+                _a[folderPathKey] = thisFolderPath,
+                _a);
+            return builder(thisFolderPath, options).then(function (folderJson) { return utils_1.pureAssign(folderData, folderJson); });
         });
         return { filePromises: filePromises, folderPromises: folderPromises, jsonFiles: jsonFiles, metaFiles: metaFiles };
     })

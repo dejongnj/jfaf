@@ -23,11 +23,15 @@ exports.pureAssign = function () {
     return Object.assign.apply(Object, [{}].concat(args));
 };
 // // const removeExtraForwardSlashes = string => string
-// export const formPath = basePath => (...pathSegments) => 
+// export const formPath = basePath => (...pathSegments) =>
 // paths.reduce((pathString, pathSegment) => `${pathString}/${pathSegment}`, basePath).replace(/\/\//g, '/')
 // // const fileDirentToPath = relativePath => dirent => `${relativePath}/${dirent.name}`.replace(/\/\//g, '/')
 exports.linkAdder = function (relativeFolderPath) {
     return function (fileData) { return exports.pureAssign(fileData, { link: relativeFolderPath + "/" + fileData.filename }); };
+};
+exports.getStatData = function (stat) {
+    var birthtimeMs = stat.birthtimeMs;
+    return { birthtimeMs: birthtimeMs };
 };
 exports.sortFolderContentList = function (absolutePath, options) {
     if (options === void 0) { options = {}; }

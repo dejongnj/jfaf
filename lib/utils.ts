@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
+import { IBuildOptions } from "./types";
 
 export const shouldIncludeFile = (dirent: fs.Dirent, prohibitedList: Array<string|RegExp> = []) => 
   dirent.isFile() && !prohibitedList.includes(dirent.name);
@@ -12,7 +13,7 @@ export const getJson = (content: Buffer) => JSON.parse(content.toString());
 export const getJsonPromise = (contentPromise: Promise<Buffer>) => contentPromise.then(getJson);
 export const pureAssign = (...args: any) => Object.assign({}, ...args);
 // // const removeExtraForwardSlashes = string => string
-// export const formPath = basePath => (...pathSegments) => 
+// export const formPath = basePath => (...pathSegments) =>
 // paths.reduce((pathString, pathSegment) => `${pathString}/${pathSegment}`, basePath).replace(/\/\//g, '/')
 // // const fileDirentToPath = relativePath => dirent => `${relativePath}/${dirent.name}`.replace(/\/\//g, '/')
 export const linkAdder = (relativeFolderPath: string) =>
@@ -21,8 +22,12 @@ export const linkAdder = (relativeFolderPath: string) =>
 interface ISortFolder {
   metaFileNames?: string[];
 }
+export const getStatData = (stat: fs.Stats) => {
+  const { birthtimeMs } = stat;
+  return { birthtimeMs };
+};
 
-export const sortFolderContentList = (absolutePath: string, options: ISortFolder = {}) =>
+export const sortFolderContentList = (absolutePath: string, options: IBuildOptions = {}) =>
   (folderContentsList: any[]) => {
   const { metaFileNames = ["meta.json"] } = options;
   return folderContentsList
