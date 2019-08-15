@@ -11,9 +11,13 @@ interface IGetFolderContentResponse {
 }
 
 const getFolderContents = (rootPath: string, folderPath: string, options: IBuildOptions = {}): any => {
-  const { filenameKey = "filename" } = options;
-  const { folderNameKey = "folderName" } = options;
-  const { folderPathKey = "folderPath" } = options;
+  const {
+    filenameKey = "filename",
+    folderNameKey = "folderName",
+    folderPathKey = "folderPath",
+    statKeys = {},
+   } = options;
+
   const absolutePath = path.resolve(rootPath, folderPath);
 
   return Promise.all([
@@ -22,13 +26,14 @@ const getFolderContents = (rootPath: string, folderPath: string, options: IBuild
   ])
     .then(([folderContentsList, folderStat]) => {
       // sort folder contents into files folders and meta files
-      console.log(folderStat);
+      console.log(Object.assign(folderStat));
       const {
         fileNames,
         folders,
         jsonFiles,
         metaFiles,
       } = sortFolderContentList(absolutePath, options)(folderContentsList);
+      metaFiles.push({ contentPromise: Promise.resolve(getStatData(folderStat, statKeys)) });
 
       const filePromises = fileNames.map((filename: string) => {
         const jsonFileName = `${filename}.json`;

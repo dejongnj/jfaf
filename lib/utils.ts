@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import { IBuildOptions } from "./types";
+import { IAnyObject, IBuildOptions, IStatKeys } from "./types";
 
 export const shouldIncludeFile = (dirent: fs.Dirent, prohibitedList: Array<string|RegExp> = []) => 
   dirent.isFile() && !prohibitedList.includes(dirent.name);
@@ -22,9 +22,34 @@ export const linkAdder = (relativeFolderPath: string) =>
 interface ISortFolder {
   metaFileNames?: string[];
 }
-export const getStatData = (stat: fs.Stats) => {
-  const { birthtimeMs } = stat;
-  return { birthtimeMs };
+export const getStatData = (stat: fs.Stats, options: IStatKeys = {}) => {
+  const availableStatKeys = [
+    "dev", "mode", "nlink", "uid", "gid", "rdev", "blksize", "ino", "size", "blocks",
+    "atimeMs", "mtimeMs", "ctimeMs", "birthtimeMs", "atime", "mtime", "ctime", "birthtime"
+  ];
+
+  const stringKeyStat = pureAssign(stat);
+
+  const {
+    allowedKeys = [new RegExp(/.*/)], disallowedKeys = [],
+    devKey = "dev", modeKey = "mode", nlinkKey = "nlink", uidKey = "uid", gidKey = "gid",
+    rdevKey = "rdev", blksizeKey = "blksize", inoKey = "ino", sizeKey = "size", blocksKey = "blocks",
+    atimeMsKey = "atimeMs", mtimeMsKey = "mtimeMs", ctimeMsKey = "ctimeMs", birthtimeMsKey = "birthtimeMs",
+    atimeKey = "atime", mtimeKey = "mtime", ctimeKey = "ctime", birthtimeKey = "birthtime",
+  } = options;
+  const keyNames: IAnyObject = {
+    // tslint:disable-next-line: object-literal-sort-keys
+    devKey, modeKey, nlinkKey, uidKey, gidKey, rdevKey, blksizeKey, inoKey, sizeKey, blocksKey,
+    atimeMsKey, mtimeMsKey, ctimeMsKey, birthtimeMsKey, atimeKey, mtimeKey, ctimeKey, birthtimeKey,
+  };
+
+  return availableStatKeys
+    .filter((key: string) => allowedKeys.some((regex: RegExp | string) => key.match(regex)))
+    .filter((key: string) => !disallowedKeys.some((regex: RegExp | string) => key.match(regex)))
+    .reduce((statObj: IAnyObject, key: string) => {
+      statObj[keyNames[`${key}Key`]] = stringKeyStat[key];
+      return statObj;
+    }, {});
 };
 
 export const sortFolderContentList = (absolutePath: string, options: IBuildOptions = {}) =>

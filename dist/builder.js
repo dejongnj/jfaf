@@ -41,9 +41,7 @@ var path = require("path");
 var utils_1 = require("./utils");
 var getFolderContents = function (rootPath, folderPath, options) {
     if (options === void 0) { options = {}; }
-    var _a = options.filenameKey, filenameKey = _a === void 0 ? "filename" : _a;
-    var _b = options.folderNameKey, folderNameKey = _b === void 0 ? "folderName" : _b;
-    var _c = options.folderPathKey, folderPathKey = _c === void 0 ? "folderPath" : _c;
+    var _a = options.filenameKey, filenameKey = _a === void 0 ? "filename" : _a, _b = options.folderNameKey, folderNameKey = _b === void 0 ? "folderName" : _b, _c = options.folderPathKey, folderPathKey = _c === void 0 ? "folderPath" : _c, _d = options.statKeys, statKeys = _d === void 0 ? {} : _d;
     var absolutePath = path.resolve(rootPath, folderPath);
     return Promise.all([
         fs.promises.readdir(absolutePath, { withFileTypes: true }),
@@ -52,8 +50,9 @@ var getFolderContents = function (rootPath, folderPath, options) {
         .then(function (_a) {
         var folderContentsList = _a[0], folderStat = _a[1];
         // sort folder contents into files folders and meta files
-        console.log(folderStat);
+        console.log(Object.assign(folderStat));
         var _b = utils_1.sortFolderContentList(absolutePath, options)(folderContentsList), fileNames = _b.fileNames, folders = _b.folders, jsonFiles = _b.jsonFiles, metaFiles = _b.metaFiles;
+        metaFiles.push({ contentPromise: Promise.resolve(utils_1.getStatData(folderStat, statKeys)) });
         var filePromises = fileNames.map(function (filename) {
             var jsonFileName = filename + ".json";
             return Promise.all([new Promise(function (resolve, reject) {
