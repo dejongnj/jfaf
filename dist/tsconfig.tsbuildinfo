@@ -122,16 +122,16 @@
         "signature": "63b66918290d794f73832a6d0325be5026236674fe8c0cb0b68d162000d7bbe8"
       },
       "/users/nick/projects/jfaf/lib/types.ts": {
-        "version": "912ce1e5363fd9b159b33c9d52c623700ecaad07f633463b24235f39092e6d2d",
-        "signature": "ba31ad29fd11a26802ac7f5b9c9677635ce64567b41da405326b4c7f5ba5bfe2"
+        "version": "70b58b22c94e656c78a5e54dad36182be3fe118537a3efde3008c17968f01ef3",
+        "signature": "940801d274983631eb7a842329339ded0749e61a0b271d20eaec2e0870cef2f8"
       },
       "/users/nick/projects/jfaf/lib/utils.ts": {
-        "version": "b96f8602d4261d661468f8b0ecf2ff737a8f8e5209f3319bf0f92428454149fc",
-        "signature": "42b5812f2542287a8d7083a06d5737489d4f0f17cce7627d89bdef7bcd4ef6c8"
+        "version": "59ecb5ba8e26d84655d99b664b11ed2609087814850c25feb1330ccedb808d3f",
+        "signature": "a16617130fdad8ebe4e94452ccb989181fa9b297928bdee5871e51dc3f127676"
       },
       "/users/nick/projects/jfaf/lib/builder.ts": {
-        "version": "6afb7ce21828bf905ca61215c107d392e0acde72ffad3c9996460e13e315e655",
-        "signature": "400dc8a7f1cb013ed091a85400542d20edab57c35ed85f502229bc77b0768cf1"
+        "version": "504027f584bbcab5ab9562f8aee9fad24e744b5b269e184b050e44d9895a59a4",
+        "signature": "6e81bda3ce80f953919f437c23733ceda0a3388a0ae99f80653033a960bec730"
       },
       "/users/nick/projects/jfaf/lib/index.ts": {
         "version": "e9c72d080ce0b13cdaa9da0b672dfe5fc2c394f141ffd7fe507ac386a82dcdd7",
@@ -447,6 +447,7 @@
         "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "/users/nick/projects/jfaf/lib/types.ts": [
+        "/users/nick/projects/jfaf/node_modules/@types/node/fs.d.ts",
         "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts",
         "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -857,6 +858,9 @@
       "/users/nick/projects/jfaf/node_modules/typescript/lib/lib.esnext.bigint.d.ts": [
         "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts",
         "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/nick/projects/jfaf/lib/types.ts": [
+        "/users/nick/projects/jfaf/node_modules/@types/node/fs.d.ts"
       ],
       "/users/nick/projects/jfaf/lib/utils.ts": [
         "/users/nick/projects/jfaf/node_modules/@types/node/fs.d.ts",

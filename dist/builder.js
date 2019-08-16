@@ -39,9 +39,40 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var path = require("path");
 var utils_1 = require("./utils");
+exports.sortFolderContentList = function (absolutePath, options) {
+    if (options === void 0) { options = {}; }
+    return function (folderContentsList) {
+        var _a = options.isMetaFile, isMetaFile = _a === void 0 ? utils_1.defaultIsMetaFile : _a, _b = options.shouldIncludeFile, shouldIncludeFile = _b === void 0 ? utils_1.defaultShouldIncludeFile : _b;
+        return folderContentsList
+            .reduce(function (sortedObj, dirent) {
+            if (dirent.isDirectory()) { // folders
+                sortedObj.folders.push(dirent);
+                return sortedObj;
+            }
+            if (dirent.isFile() && shouldIncludeFile(dirent, absolutePath, options)) { // files
+                if (utils_1.isJsonFile(dirent)) {
+                    sortedObj.jsonFiles[dirent.name] = true;
+                }
+                sortedObj.filenames.push(dirent.name);
+                if (isMetaFile(dirent, absolutePath, options)) { // meta files
+                    sortedObj.metaFiles.push({
+                        contentPromise: utils_1.getJsonPromise(utils_1.readFileContents(path.resolve(absolutePath, dirent.name))),
+                        filename: dirent.name,
+                    });
+                }
+            }
+            return sortedObj;
+        }, {
+            filenames: [],
+            folders: [],
+            jsonFiles: {},
+            metaFiles: [],
+        });
+    };
+};
 var getFolderContents = function (rootPath, folderPath, options) {
     if (options === void 0) { options = {}; }
-    var _a = options.filenameKey, filenameKey = _a === void 0 ? "filename" : _a, _b = options.folderNameKey, folderNameKey = _b === void 0 ? "folderName" : _b, _c = options.folderPathKey, folderPathKey = _c === void 0 ? "folderPath" : _c, _d = options.statKeys, statKeys = _d === void 0 ? {} : _d;
+    var _a = options.filenameKey, filenameKey = _a === void 0 ? "filename" : _a, _b = options.folderNameKey, folderNameKey = _b === void 0 ? "folderName" : _b, _c = options.folderPathKey, folderPathKey = _c === void 0 ? "folderPath" : _c, _d = options.statTransform, statTransform = _d === void 0 ? function (val) { return val; } : _d;
     var absolutePath = path.resolve(rootPath, folderPath);
     return Promise.all([
         fs.promises.readdir(absolutePath, { withFileTypes: true }),
@@ -50,10 +81,12 @@ var getFolderContents = function (rootPath, folderPath, options) {
         .then(function (_a) {
         var folderContentsList = _a[0], folderStat = _a[1];
         // sort folder contents into files folders and meta files
-        console.log(Object.assign(folderStat));
-        var _b = utils_1.sortFolderContentList(absolutePath, options)(folderContentsList), fileNames = _b.fileNames, folders = _b.folders, jsonFiles = _b.jsonFiles, metaFiles = _b.metaFiles;
-        metaFiles.push({ contentPromise: Promise.resolve(utils_1.getStatData(folderStat, statKeys)) });
-        var filePromises = fileNames.map(function (filename) {
+        var _b = exports.sortFolderContentList(absolutePath, options)(folderContentsList), filenames = _b.filenames, folders = _b.folders, jsonFiles = _b.jsonFiles, metaFiles = _b.metaFiles;
+        metaFiles.push({
+            contentPromise: Promise.resolve(utils_1.getStatData(folderStat, statTransform)),
+            filename: rootPath + "/" + folderPath,
+        });
+        var filePromises = filenames.map(function (filename) {
             var jsonFileName = filename + ".json";
             return Promise.all([new Promise(function (resolve, reject) {
                     if (!jsonFiles[jsonFileName]) {
@@ -66,7 +99,7 @@ var getFolderContents = function (rootPath, folderPath, options) {
                 .then(function (_a) {
                 var _b;
                 var _c = _a[0], metaData = _c === void 0 ? {} : _c, fstatData = _a[1];
-                var statData = utils_1.getStatData(fstatData);
+                var statData = utils_1.getStatData(fstatData, statTransform);
                 return utils_1.pureAssign(metaData, statData, (_b = {}, _b[filenameKey] = filename, _b));
             })
                 .then(utils_1.linkAdder(folderPath));
