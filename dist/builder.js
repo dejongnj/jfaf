@@ -114,8 +114,7 @@ var getFolderContents = function (rootPath, folderPath, options) {
             return builder(thisFolderPath, options).then(function (folderJson) { return utils_1.pureAssign(folderData, folderJson); });
         });
         return { filePromises: filePromises, folderPromises: folderPromises, jsonFiles: jsonFiles, metaFiles: metaFiles };
-    })
-        .catch(function (err) { return console.log(err); });
+    });
 };
 var builder = function (folderPath, options) {
     if (options === void 0) { options = {}; }

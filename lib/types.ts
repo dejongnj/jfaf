@@ -8,16 +8,14 @@ export interface IOnlyTrueObject {
   [propName: string]: boolean;
 }
 
-export interface IMetaFilesData {
-  filename?: string;
-  contentPromise: Promise<IAnyObject>;
+export interface IJsonResponse { // Promise for JSON Object
+  [key: string]: any;
 }
 
-export type IStatTransform = (stat: fs.Stats) => IAnyObject;
-
-export type IShouldIncludeFile = (dirent: fs.Dirent, absolutePath: string, options: IBuildOptions) => boolean;
-
-export type IIsMetaFile = (dirent: fs.Dirent, absolutePath: string, options: IBuildOptions) => boolean;
+export interface IMetaFilesData {
+  filename: string;
+  contentPromise: Promise<IAnyObject>;
+}
 
 export interface IBuildOptions {
   rootPath?: string;
@@ -37,6 +35,15 @@ export interface ISortedFolderContentList {
   metaFiles: IMetaFilesData[];
 }
 
-export interface IJsonResponse { // Promise for JSON Object
-  [key: string]: any;
+export interface IGetFolderContentResponse {
+  filePromises: Array<Promise<IAnyObject>>;
+  folderPromises: Array<Promise<IAnyObject>>;
+  jsonFiles: IAnyObject;
+  metaFiles: IMetaFilesData[];
 }
+
+export type IStatTransform = (stat: fs.Stats) => IAnyObject;
+
+export type IShouldIncludeFile = (dirent: fs.Dirent, absolutePath: string, options: IBuildOptions) => boolean;
+
+export type IIsMetaFile = (dirent: fs.Dirent, absolutePath: string, options: IBuildOptions) => boolean;

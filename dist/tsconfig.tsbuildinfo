@@ -122,15 +122,15 @@
         "signature": "63b66918290d794f73832a6d0325be5026236674fe8c0cb0b68d162000d7bbe8"
       },
       "/users/nick/projects/jfaf/lib/types.ts": {
-        "version": "70b58b22c94e656c78a5e54dad36182be3fe118537a3efde3008c17968f01ef3",
-        "signature": "940801d274983631eb7a842329339ded0749e61a0b271d20eaec2e0870cef2f8"
+        "version": "7ea1422073c4435c27908a8502669431469f6341b190bd772ed3bce160776d3f",
+        "signature": "ae9fa5eecbf75dccb6d25c0d2a3c48b5adc0c8b4b929e19c483764ec8ae4bb51"
       },
       "/users/nick/projects/jfaf/lib/utils.ts": {
         "version": "59ecb5ba8e26d84655d99b664b11ed2609087814850c25feb1330ccedb808d3f",
         "signature": "a16617130fdad8ebe4e94452ccb989181fa9b297928bdee5871e51dc3f127676"
       },
       "/users/nick/projects/jfaf/lib/builder.ts": {
-        "version": "504027f584bbcab5ab9562f8aee9fad24e744b5b269e184b050e44d9895a59a4",
+        "version": "2bf8cd65adda524678f3071a205a23bfd58aec9c4db4f5223453183a2e314ff1",
         "signature": "6e81bda3ce80f953919f437c23733ceda0a3388a0ae99f80653033a960bec730"
       },
       "/users/nick/projects/jfaf/lib/index.ts": {
