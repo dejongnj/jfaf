@@ -1,15 +1,12 @@
 /// <reference types="node" />
 import * as fs from "fs";
-import { IBuildOptions } from "./types";
-export declare const shouldIncludeFile: (dirent: fs.Dirent, prohibitedList?: (string | RegExp)[]) => boolean;
-export declare const isMetaFile: (dirent: fs.Dirent, metaFiles?: string[]) => boolean;
+import { IAnyObject, IBuildOptions, IStatTransform } from "./types";
+export declare const defaultShouldIncludeFile: (dirent: fs.Dirent, absolutePath: string, options: IBuildOptions) => boolean;
+export declare const defaultIsMetaFile: (dirent: fs.Dirent, absolutePath: string, options: IBuildOptions) => boolean;
 export declare const isJsonFile: (dirent: fs.Dirent) => boolean;
 export declare const readFileContents: (absolutePath: string) => Promise<Buffer>;
 export declare const getJson: (content: Buffer) => any;
-export declare const getJsonPromise: (contentPromise: Promise<Buffer>) => Promise<any>;
+export declare const getJsonPromise: (contentPromise: Promise<Buffer>) => Promise<IAnyObject>;
 export declare const pureAssign: (...args: any) => any;
 export declare const linkAdder: (relativeFolderPath: string) => (fileData: any) => any;
-export declare const getStatData: (stat: fs.Stats) => {
-    birthtimeMs: number;
-};
-export declare const sortFolderContentList: (absolutePath: string, options?: IBuildOptions) => (folderContentsList: any[]) => any;
+export declare const getStatData: (stat: fs.Stats, statTransform: IStatTransform) => IAnyObject;
