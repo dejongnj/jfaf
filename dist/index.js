@@ -41,12 +41,7 @@ var creator = function () { return __awaiter(_this, void 0, void 0, function () 
     var a;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, builder_1.default("test/test-folder-structures/test1 - default", {
-                    filenameKey: "HEEEEEEE",
-                    folderNameKey: "DIRECTORY",
-                    folderPathKey: "PATH",
-                    metaFileNames: ["meta2.json"],
-                })];
+            case 0: return [4 /*yield*/, builder_1.default("test/test-folder-structures/test1 - default", {})];
             case 1:
                 a = _a.sent();
                 console.log(a);
