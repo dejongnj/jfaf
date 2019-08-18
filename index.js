@@ -1,3 +1,2 @@
-module.exports = function () {
-  console.log('hello world')
-}
+const builder = require('./dist/index.js')
+module.exports = builder

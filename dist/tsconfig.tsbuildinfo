@@ -859,14 +859,8 @@
         "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts",
         "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "/users/nick/projects/jfaf/lib/types.ts": [
-        "/users/nick/projects/jfaf/node_modules/@types/node/fs.d.ts"
-      ],
       "/users/nick/projects/jfaf/lib/utils.ts": [
         "/users/nick/projects/jfaf/node_modules/@types/node/fs.d.ts",
-        "/users/nick/projects/jfaf/lib/types.ts"
-      ],
-      "/users/nick/projects/jfaf/lib/builder.ts": [
         "/users/nick/projects/jfaf/lib/types.ts"
       ],
       "/users/nick/projects/jfaf/node_modules/@types/node/globals.d.ts": [
@@ -1134,6 +1128,12 @@
         "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts",
         "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/globals.d.ts",
         "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts"
+      ],
+      "/users/nick/projects/jfaf/lib/types.ts": [
+        "/users/nick/projects/jfaf/node_modules/@types/node/fs.d.ts"
+      ],
+      "/users/nick/projects/jfaf/lib/builder.ts": [
+        "/users/nick/projects/jfaf/lib/types.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -1167,9 +1167,6 @@
       "/users/nick/projects/jfaf/node_modules/typescript/lib/lib.es2018.regexp.d.ts",
       "/users/nick/projects/jfaf/node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "/users/nick/projects/jfaf/node_modules/typescript/lib/lib.esnext.bigint.d.ts",
-      "/users/nick/projects/jfaf/lib/types.ts",
-      "/users/nick/projects/jfaf/lib/utils.ts",
-      "/users/nick/projects/jfaf/lib/builder.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/globals.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/assert.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/async_hooks.d.ts",
@@ -1214,6 +1211,9 @@
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/globals.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/index.d.ts",
+      "/users/nick/projects/jfaf/lib/types.ts",
+      "/users/nick/projects/jfaf/lib/utils.ts",
+      "/users/nick/projects/jfaf/lib/builder.ts",
       "/users/nick/projects/jfaf/lib/index.ts"
     ]
   },
