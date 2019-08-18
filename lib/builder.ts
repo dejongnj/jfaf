@@ -41,9 +41,9 @@ const getFolderContents = (
   options: IBuildOptions = {},
 ): Promise<IGetFolderContentResponse> => {
     const {
-      filenameKey = "filename",
-      folderNameKey = "folderName",
-      folderPathKey = "folderPath",
+      filenameKey = "name",
+      folderNameKey = "name",
+      folderPathKey = "path",
       statTransform = (val: fs.Stats): IAnyObject => val,
     } = options;
 

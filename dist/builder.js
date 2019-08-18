@@ -72,7 +72,7 @@ exports.sortFolderContentList = function (absolutePath, options) {
 };
 var getFolderContents = function (rootPath, folderPath, options) {
     if (options === void 0) { options = {}; }
-    var _a = options.filenameKey, filenameKey = _a === void 0 ? "filename" : _a, _b = options.folderNameKey, folderNameKey = _b === void 0 ? "folderName" : _b, _c = options.folderPathKey, folderPathKey = _c === void 0 ? "folderPath" : _c, _d = options.statTransform, statTransform = _d === void 0 ? function (val) { return val; } : _d;
+    var _a = options.filenameKey, filenameKey = _a === void 0 ? "name" : _a, _b = options.folderNameKey, folderNameKey = _b === void 0 ? "name" : _b, _c = options.folderPathKey, folderPathKey = _c === void 0 ? "path" : _c, _d = options.statTransform, statTransform = _d === void 0 ? function (val) { return val; } : _d;
     var absolutePath = path.resolve(rootPath, folderPath);
     return Promise.all([
         fs.promises.readdir(absolutePath, { withFileTypes: true }),

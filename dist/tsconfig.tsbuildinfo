@@ -130,11 +130,11 @@
         "signature": "a16617130fdad8ebe4e94452ccb989181fa9b297928bdee5871e51dc3f127676"
       },
       "/users/nick/projects/jfaf/lib/builder.ts": {
-        "version": "2bf8cd65adda524678f3071a205a23bfd58aec9c4db4f5223453183a2e314ff1",
+        "version": "c014804af6cbb8871ca791f0e95814053c898046a3015f547d22d92f87be19f5",
         "signature": "6e81bda3ce80f953919f437c23733ceda0a3388a0ae99f80653033a960bec730"
       },
       "/users/nick/projects/jfaf/lib/index.ts": {
-        "version": "e9c72d080ce0b13cdaa9da0b672dfe5fc2c394f141ffd7fe507ac386a82dcdd7",
+        "version": "df1be34cbcded69dad805b7deb9b35d8f9452104e094cb3902a81edacbb27173",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "/users/nick/projects/jfaf/node_modules/@types/node/globals.d.ts": {
@@ -1169,7 +1169,7 @@
       "/users/nick/projects/jfaf/node_modules/typescript/lib/lib.esnext.bigint.d.ts",
       "/users/nick/projects/jfaf/lib/types.ts",
       "/users/nick/projects/jfaf/lib/utils.ts",
-      "/users/nick/projects/jfaf/lib/index.ts",
+      "/users/nick/projects/jfaf/lib/builder.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/globals.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/assert.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/async_hooks.d.ts",
@@ -1214,7 +1214,7 @@
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/globals.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/index.d.ts",
-      "/users/nick/projects/jfaf/lib/builder.ts"
+      "/users/nick/projects/jfaf/lib/index.ts"
     ]
   },
   "version": "3.5.3"
