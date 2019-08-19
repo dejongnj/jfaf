@@ -32,3 +32,9 @@ jfaf('relative/to/root/folder')
     );
   });
 ```
+
+## Todos
+
+### Write tests
+### convert to not using fs.promises
+### write documentation for options object
