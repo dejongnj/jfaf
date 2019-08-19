@@ -126,15 +126,15 @@
         "signature": "ae9fa5eecbf75dccb6d25c0d2a3c48b5adc0c8b4b929e19c483764ec8ae4bb51"
       },
       "/users/nick/projects/jfaf/lib/utils.ts": {
-        "version": "59ecb5ba8e26d84655d99b664b11ed2609087814850c25feb1330ccedb808d3f",
-        "signature": "a16617130fdad8ebe4e94452ccb989181fa9b297928bdee5871e51dc3f127676"
+        "version": "fc0975b302c5df0d2b39c784e6dc67da3b370194bedf973605173ac0d0b00a84",
+        "signature": "c584faa7ebed0b1b418871ac5af8041a7da6fbdedfc28e9ee28e8b305eb10bec"
       },
       "/users/nick/projects/jfaf/lib/builder.ts": {
-        "version": "c014804af6cbb8871ca791f0e95814053c898046a3015f547d22d92f87be19f5",
+        "version": "f8f633b26d507103656d7f15b3bfbf52fc9c5c18ddb4424748a5f509c82fc551",
         "signature": "6e81bda3ce80f953919f437c23733ceda0a3388a0ae99f80653033a960bec730"
       },
       "/users/nick/projects/jfaf/lib/index.ts": {
-        "version": "4da021d7584777bc0d682174a4e69c95697474d0f08af5f2fa3dd6891d781da9",
+        "version": "74f5585a2e13d96ab71e5cc70ff86918c8e4ebf3b1b144ee26e221d3b58ea993",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "/users/nick/projects/jfaf/node_modules/@types/node/globals.d.ts": {
@@ -859,8 +859,14 @@
         "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts",
         "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/users/nick/projects/jfaf/lib/types.ts": [
+        "/users/nick/projects/jfaf/node_modules/@types/node/fs.d.ts"
+      ],
       "/users/nick/projects/jfaf/lib/utils.ts": [
         "/users/nick/projects/jfaf/node_modules/@types/node/fs.d.ts",
+        "/users/nick/projects/jfaf/lib/types.ts"
+      ],
+      "/users/nick/projects/jfaf/lib/builder.ts": [
         "/users/nick/projects/jfaf/lib/types.ts"
       ],
       "/users/nick/projects/jfaf/node_modules/@types/node/globals.d.ts": [
@@ -1128,12 +1134,6 @@
         "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts",
         "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/globals.d.ts",
         "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts"
-      ],
-      "/users/nick/projects/jfaf/lib/types.ts": [
-        "/users/nick/projects/jfaf/node_modules/@types/node/fs.d.ts"
-      ],
-      "/users/nick/projects/jfaf/lib/builder.ts": [
-        "/users/nick/projects/jfaf/lib/types.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -1167,6 +1167,9 @@
       "/users/nick/projects/jfaf/node_modules/typescript/lib/lib.es2018.regexp.d.ts",
       "/users/nick/projects/jfaf/node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "/users/nick/projects/jfaf/node_modules/typescript/lib/lib.esnext.bigint.d.ts",
+      "/users/nick/projects/jfaf/lib/types.ts",
+      "/users/nick/projects/jfaf/lib/utils.ts",
+      "/users/nick/projects/jfaf/lib/index.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/globals.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/assert.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/async_hooks.d.ts",
@@ -1211,10 +1214,19 @@
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/globals.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/index.d.ts",
-      "/users/nick/projects/jfaf/lib/types.ts",
-      "/users/nick/projects/jfaf/lib/utils.ts",
-      "/users/nick/projects/jfaf/lib/builder.ts",
-      "/users/nick/projects/jfaf/lib/index.ts"
+      [
+        "/users/nick/projects/jfaf/lib/builder.ts",
+        [
+          {
+            "file": "/users/nick/projects/jfaf/lib/builder.ts",
+            "start": 3651,
+            "length": 22,
+            "messageText": "Function lacks ending return statement and return type does not include 'undefined'.",
+            "category": 1,
+            "code": 2366
+          }
+        ]
+      ]
     ]
   },
   "version": "3.5.3"

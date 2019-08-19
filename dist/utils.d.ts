@@ -8,5 +8,5 @@ export declare const readFileContents: (absolutePath: string) => Promise<Buffer>
 export declare const getJson: (content: Buffer) => any;
 export declare const getJsonPromise: (contentPromise: Promise<Buffer>) => Promise<IAnyObject>;
 export declare const pureAssign: (...args: any) => any;
-export declare const linkAdder: (relativeFolderPath: string) => (fileData: any) => any;
+export declare const linkAdder: (relativeFolderPath: string, options?: IBuildOptions) => (fileData: any) => any;
 export declare const getStatData: (stat: fs.Stats, statTransform: IStatTransform) => IAnyObject;

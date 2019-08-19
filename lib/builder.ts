@@ -96,13 +96,18 @@ const getFolderContents = (
 };
 
 const builder = async (folderPath: string, options: IBuildOptions = {}): Promise<IJsonResponse> => {
-  const { rootPath = process.cwd() } = options;
-  const folderContent = await getFolderContents(rootPath, folderPath, options);
-  const metaDataPromises = Promise.all(folderContent.metaFiles.map((file: any) => file.contentPromise));
-  const filesPromise = Promise.all(folderContent.filePromises);
-  const foldersPromise = Promise.all(folderContent.folderPromises);
-  const [metaData, files, folders] = await Promise.all([ metaDataPromises, filesPromise, foldersPromise ]);
-  return pureAssign(...metaData, { files, folders });
+  try {
+    const { rootPath = process.cwd() } = options;
+    const folderContent = await getFolderContents(rootPath, folderPath, options);
+    const metaDataPromises = Promise.all(folderContent.metaFiles.map((file: any) => file.contentPromise));
+    const filesPromise = Promise.all(folderContent.filePromises);
+    const foldersPromise = Promise.all(folderContent.folderPromises);
+    const [metaData, files, folders] = await Promise.all([ metaDataPromises, filesPromise, foldersPromise ]);
+    return pureAssign(...metaData, { files, folders });
+  } catch (error) {
+    console.log("An error occurred trying to build the folder json");
+    console.error(error);
+  }
 };
 
 export default builder;

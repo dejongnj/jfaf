@@ -119,10 +119,11 @@ var getFolderContents = function (rootPath, folderPath, options) {
 var builder = function (folderPath, options) {
     if (options === void 0) { options = {}; }
     return __awaiter(_this, void 0, void 0, function () {
-        var _a, rootPath, folderContent, metaDataPromises, filesPromise, foldersPromise, _b, metaData, files, folders;
+        var _a, rootPath, folderContent, metaDataPromises, filesPromise, foldersPromise, _b, metaData, files, folders, error_1;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
+                    _c.trys.push([0, 3, , 4]);
                     _a = options.rootPath, rootPath = _a === void 0 ? process.cwd() : _a;
                     return [4 /*yield*/, getFolderContents(rootPath, folderPath, options)];
                 case 1:
@@ -134,6 +135,12 @@ var builder = function (folderPath, options) {
                 case 2:
                     _b = _c.sent(), metaData = _b[0], files = _b[1], folders = _b[2];
                     return [2 /*return*/, utils_1.pureAssign.apply(void 0, metaData.concat([{ files: files, folders: folders }]))];
+                case 3:
+                    error_1 = _c.sent();
+                    console.log("An error occurred trying to build the folder json");
+                    console.error(error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
