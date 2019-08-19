@@ -38,3 +38,6 @@ jfaf('relative/to/root/folder')
 ### Write tests
 ### convert to not using fs.promises
 ### write documentation for options object
+### add more functionality
+- ability to create ids on certain fields in json object (not writing to any files in the folders), if they don't exist already - also ability to overwrite those ids if they exist
+- add optional output file field which automatically creates JSON file of jfaf output
