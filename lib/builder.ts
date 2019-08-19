@@ -107,6 +107,7 @@ const builder = async (folderPath: string, options: IBuildOptions = {}): Promise
   } catch (error) {
     console.log("An error occurred trying to build the folder json");
     console.error(error);
+    return error;
   }
 };
 

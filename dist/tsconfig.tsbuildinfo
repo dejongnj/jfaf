@@ -130,11 +130,11 @@
         "signature": "c584faa7ebed0b1b418871ac5af8041a7da6fbdedfc28e9ee28e8b305eb10bec"
       },
       "/users/nick/projects/jfaf/lib/builder.ts": {
-        "version": "f8f633b26d507103656d7f15b3bfbf52fc9c5c18ddb4424748a5f509c82fc551",
+        "version": "ed1106f3db03a77c8fa72be86bd80355f2ca9ece766aff8ca3caf9a9e3e0e4e0",
         "signature": "6e81bda3ce80f953919f437c23733ceda0a3388a0ae99f80653033a960bec730"
       },
       "/users/nick/projects/jfaf/lib/index.ts": {
-        "version": "74f5585a2e13d96ab71e5cc70ff86918c8e4ebf3b1b144ee26e221d3b58ea993",
+        "version": "72c6435c3c08b35fe3a5a9e0fde5d121eb91d78df69a7b3ffe7585a7ac9fdf83",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "/users/nick/projects/jfaf/node_modules/@types/node/globals.d.ts": {
@@ -1169,7 +1169,7 @@
       "/users/nick/projects/jfaf/node_modules/typescript/lib/lib.esnext.bigint.d.ts",
       "/users/nick/projects/jfaf/lib/types.ts",
       "/users/nick/projects/jfaf/lib/utils.ts",
-      "/users/nick/projects/jfaf/lib/index.ts",
+      "/users/nick/projects/jfaf/lib/builder.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/globals.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/assert.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/async_hooks.d.ts",
@@ -1214,19 +1214,7 @@
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/globals.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/index.d.ts",
-      [
-        "/users/nick/projects/jfaf/lib/builder.ts",
-        [
-          {
-            "file": "/users/nick/projects/jfaf/lib/builder.ts",
-            "start": 3651,
-            "length": 22,
-            "messageText": "Function lacks ending return statement and return type does not include 'undefined'.",
-            "category": 1,
-            "code": 2366
-          }
-        ]
-      ]
+      "/users/nick/projects/jfaf/lib/index.ts"
     ]
   },
   "version": "3.5.3"

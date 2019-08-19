@@ -139,7 +139,7 @@ var builder = function (folderPath, options) {
                     error_1 = _c.sent();
                     console.log("An error occurred trying to build the folder json");
                     console.error(error_1);
-                    return [3 /*break*/, 4];
+                    return [2 /*return*/, error_1];
                 case 4: return [2 /*return*/];
             }
         });
