@@ -1,6 +1,6 @@
 {
   "name": "jfaf",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Builds a json folder structure with optional meta-data",
   "main": "dist/index.js",
   "scripts": {

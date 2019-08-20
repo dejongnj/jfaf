@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
+import { readdir, readFile, stat } from "./promisifiedNode";
 import { IAnyObject, IBuildOptions, IGetFolderContentResponse, IJsonResponse, ISortedFolderContentList } from "./types";
 import { defaultIsMetaFile, defaultShouldIncludeFile, getJsonPromise, getStatData,
   isJsonFile, linkAdder, pureAssign, readFileContents } from "./utils";
@@ -50,8 +51,8 @@ const getFolderContents = (
     const absolutePath = path.resolve(rootPath, folderPath);
 
     return Promise.all([
-      fs.promises.readdir(absolutePath, { withFileTypes: true }),
-      fs.promises.stat(absolutePath),
+      readdir(absolutePath, { withFileTypes: true }),
+      stat(absolutePath),
     ])
       .then(([folderContentsList, folderStat]) => {
         // sort folder contents into files folders and meta files
@@ -74,7 +75,7 @@ const getFolderContents = (
             } else {
               resolve(getJsonPromise(readFileContents(path.resolve(absolutePath, jsonFileName))));
             }
-          }), fs.promises.stat(path.resolve(absolutePath, filename))])
+          }), stat(path.resolve(absolutePath, filename))])
           .then(([metaData = {}, fstatData]) => {
             const statData = getStatData(fstatData, statTransform);
             return pureAssign(metaData, statData, { [filenameKey]: filename });

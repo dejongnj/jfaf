@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs = require("fs");
+var promisifiedNode_1 = require("./promisifiedNode");
 // basic default options
 exports.defaultShouldIncludeFile = function (dirent, absolutePath, options) { return true; };
 exports.defaultIsMetaFile = function (dirent, absolutePath, options) {
@@ -11,7 +11,7 @@ exports.defaultIsMetaFile = function (dirent, absolutePath, options) {
 exports.isJsonFile = function (dirent) { return dirent.isFile() && !!dirent.name.toLowerCase().match(/\.json$/); };
 exports.readFileContents = function (absolutePath) {
     try {
-        return fs.promises.readFile(absolutePath);
+        return promisifiedNode_1.readFile(absolutePath);
     }
     catch (e) {
         console.log("Error tyring to read " + absolutePath);

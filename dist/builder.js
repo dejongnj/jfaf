@@ -36,8 +36,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs = require("fs");
 var path = require("path");
+var promisifiedNode_1 = require("./promisifiedNode");
 var utils_1 = require("./utils");
 exports.sortFolderContentList = function (absolutePath, options) {
     if (options === void 0) { options = {}; }
@@ -75,8 +75,8 @@ var getFolderContents = function (rootPath, folderPath, options) {
     var _a = options.filenameKey, filenameKey = _a === void 0 ? "name" : _a, _b = options.folderNameKey, folderNameKey = _b === void 0 ? "name" : _b, _c = options.folderPathKey, folderPathKey = _c === void 0 ? "path" : _c, _d = options.statTransform, statTransform = _d === void 0 ? function (val) { return val; } : _d;
     var absolutePath = path.resolve(rootPath, folderPath);
     return Promise.all([
-        fs.promises.readdir(absolutePath, { withFileTypes: true }),
-        fs.promises.stat(absolutePath),
+        promisifiedNode_1.readdir(absolutePath, { withFileTypes: true }),
+        promisifiedNode_1.stat(absolutePath),
     ])
         .then(function (_a) {
         var folderContentsList = _a[0], folderStat = _a[1];
@@ -95,7 +95,7 @@ var getFolderContents = function (rootPath, folderPath, options) {
                     else {
                         resolve(utils_1.getJsonPromise(utils_1.readFileContents(path.resolve(absolutePath, jsonFileName))));
                     }
-                }), fs.promises.stat(path.resolve(absolutePath, filename))])
+                }), promisifiedNode_1.stat(path.resolve(absolutePath, filename))])
                 .then(function (_a) {
                 var _b;
                 var _c = _a[0], metaData = _c === void 0 ? {} : _c, fstatData = _a[1];

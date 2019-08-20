@@ -1,3 +1,3 @@
 import builder from "./builder";
 
-module.exports = builder;
+export default builder;

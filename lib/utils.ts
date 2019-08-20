@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
+import { readFile } from "./promisifiedNode";
 import { IAnyObject, IBuildOptions, ISortedFolderContentList, IStatTransform } from "./types";
 
 // basic default options
@@ -15,7 +16,7 @@ export const defaultIsMetaFile = (dirent: fs.Dirent, absolutePath: string, optio
 export const isJsonFile = (dirent: fs.Dirent) => dirent.isFile() && !!dirent.name.toLowerCase().match(/\.json$/);
 export const readFileContents = (absolutePath: string) => {
   try {
-    return fs.promises.readFile(absolutePath);
+    return readFile(absolutePath);
   } catch (e) {
     console.log(`Error tyring to read ${absolutePath}`);
     return Promise.resolve(Buffer.from(JSON.stringify({})));
