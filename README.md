@@ -1,15 +1,20 @@
 # JFAF - JSON Files And Folders
+## Prerequisites and dependencies
+- requires node 8 or above
+## Introduction
 
-Jfaf (pronounced jay-faf) is a library that builds a JSON representation of a set of folders. It's initial version (pre 0.1)makes use of Node's promises apis for fs (as in fs.promises[methodName]), but a rewrite to make use of the default asynchronous fs api with callbacks is in the works.
+Jfaf (pronounced jay-faf) is a library that builds a JSON representation of a set of folders. It makes use of Node's util.promisify to use promisified versions of `fs.readdir`, `fs.readFile` and `fs.stat` metods.
 
-It's usage is fairly straight forward:
+## Usage
 
+It's usage is fairly straight forward; import and pass it relative folder path for which you want to create a json representation. ***(folder path is relative to root folder from where process is run).*** For example:
+
+On the command line, install jfaf:
 ```
 npm install jfaf
 ```
-
+Use it in a js file:
 ```
-// in a js file
 const jfaf = require('jfaf')
 
 const structurePromise = jfaf('relative/to/root/folder')
@@ -18,10 +23,8 @@ const structurePromise = jfaf('relative/to/root/folder')
   })
 
 // if you need to save the structure
-
 jfaf('relative/to/root/folder')
   .then(structure => {
-    console.log(structure) // should log a JS object to console
     fs.writeFile(
       'outputfile/path/and/name.json',
       JSON.stringify(structure)
@@ -36,7 +39,6 @@ jfaf('relative/to/root/folder')
 ## Todos
 
 ### Write tests
-### convert to not using fs.promises
 ### write documentation for options object
 ### add more functionality
 - ability to create ids on certain fields in json object (not writing to any files in the folders), if they don't exist already - also ability to overwrite those ids if they exist
