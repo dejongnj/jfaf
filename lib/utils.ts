@@ -4,7 +4,7 @@ import { readFile } from "./promisifiedNode";
 import { IAnyObject, IBuildOptions, ISortedFolderContentList, IStatTransform } from "./types";
 
 // basic default options
-export const defaultShouldIncludeFile = (dirent: fs.Dirent, absolutePath: string, options: IBuildOptions) => true;
+export const defaultShouldIncludeFile = (dirent?: fs.Dirent, absolutePath?: string, options?: IBuildOptions) => true;
 export const defaultIsMetaFile = (dirent: fs.Dirent, absolutePath: string, options: IBuildOptions) => {
   const {
     metaFileNames = ["meta.json"],

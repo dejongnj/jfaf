@@ -4,12 +4,13 @@
   "description": "Builds a json folder structure with optional meta-data",
   "main": "dist/index.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/dejongnj/jfaf"
+    "type": "git",
+    "url": "https://github.com/dejongnj/jfaf"
   },
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha -r ts-node/register lib/**/*.spec.ts",
+    "test-watch": "mocha -w -r ts-node/register lib/**/*.spec.ts -watch-extensions ts",
     "watch": "tsc -w"
   },
   "keywords": [
@@ -21,6 +22,9 @@
   "author": "NJ de Jong",
   "license": "ISC",
   "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "mocha": "^6.2.0",
+    "ts-node": "^8.3.0",
     "tslint": "^5.18.0",
     "typescript": "^3.5.3"
   },

@@ -130,16 +130,36 @@
         "signature": "ae9fa5eecbf75dccb6d25c0d2a3c48b5adc0c8b4b929e19c483764ec8ae4bb51"
       },
       "/users/nick/projects/jfaf/lib/utils.ts": {
-        "version": "d6b07e4cef6c691a245e5bcfbd18b44fecb9e3c91645e2836d58a5701487a732",
-        "signature": "c584faa7ebed0b1b418871ac5af8041a7da6fbdedfc28e9ee28e8b305eb10bec"
+        "version": "d5b2175a7ddb362d4f6e215c29256f2147deb3f9e8a1a1205bddcede6b7882b3",
+        "signature": "a9969a99fe94c403b844fa7f40ca03fc77ce194b32cee9cab8caa6cd4fe2ae16"
       },
       "/users/nick/projects/jfaf/lib/builder.ts": {
         "version": "3333bc7ef9de4342f008feaa6d0d26ec3f4e2b785da98fa8f82318384154301e",
         "signature": "6e81bda3ce80f953919f437c23733ceda0a3388a0ae99f80653033a960bec730"
       },
+      "/users/nick/projects/jfaf/lib/builder.spec.ts": {
+        "version": "4de1b810f300e5e67314c40643071141fe25239074795a17379e64f192091eda",
+        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+      },
       "/users/nick/projects/jfaf/lib/index.ts": {
         "version": "6ee990a048534587dba91410110f6709b82e6bea45329626a3f2ea3fb4e9cdbb",
         "signature": "6b94147fe57cbe1f765883a443651d1db5786943d49c1d37513ed593bd9f360b"
+      },
+      "/users/nick/projects/jfaf/lib/index.spec.ts": {
+        "version": "7f4a0b3cf6a03c6853c94fc1ef560c2ed32f38f5c98f5ba648469ae2adaf2bfb",
+        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+      },
+      "/users/nick/projects/jfaf/lib/promisifiednode.spec.ts": {
+        "version": "dc22827c84793bcf99461c6d5ea8da8af96679d0e2859367e3912d6fad8b98ce",
+        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+      },
+      "/users/nick/projects/jfaf/lib/utils.spec.ts": {
+        "version": "fddd0bc8648b0c5c95749ac561aecfacc6c6301df89414ccbf403c6a8fc3f104",
+        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+      },
+      "/users/nick/projects/jfaf/node_modules/@types/mocha/index.d.ts": {
+        "version": "c4c03cf65951d980ba618ae9601d10438730803fc9c8a1f7b34af8739981e205",
+        "signature": "c4c03cf65951d980ba618ae9601d10438730803fc9c8a1f7b34af8739981e205"
       },
       "/users/nick/projects/jfaf/node_modules/@types/node/globals.d.ts": {
         "version": "e4461b72726848da76a31153b6b01af5e0be3b08dbfa2ec5741ad302eb20f2ed",
@@ -477,8 +497,36 @@
         "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts",
         "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/users/nick/projects/jfaf/lib/builder.spec.ts": [
+        "/users/nick/projects/jfaf/node_modules/@types/node/assert.d.ts",
+        "/users/nick/projects/jfaf/lib/builder.ts",
+        "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts",
+        "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "/users/nick/projects/jfaf/lib/index.ts": [
         "/users/nick/projects/jfaf/lib/builder.ts",
+        "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts",
+        "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/nick/projects/jfaf/lib/index.spec.ts": [
+        "/users/nick/projects/jfaf/node_modules/@types/node/assert.d.ts",
+        "/users/nick/projects/jfaf/lib/index.ts",
+        "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts",
+        "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/nick/projects/jfaf/lib/promisifiednode.spec.ts": [
+        "/users/nick/projects/jfaf/node_modules/@types/node/assert.d.ts",
+        "/users/nick/projects/jfaf/lib/promisifiednode.ts",
+        "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts",
+        "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/nick/projects/jfaf/lib/utils.spec.ts": [
+        "/users/nick/projects/jfaf/node_modules/@types/node/assert.d.ts",
+        "/users/nick/projects/jfaf/lib/utils.ts",
+        "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts",
+        "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/nick/projects/jfaf/node_modules/@types/mocha/index.d.ts": [
         "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts",
         "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -886,6 +934,10 @@
       "/users/nick/projects/jfaf/lib/index.ts": [
         "/users/nick/projects/jfaf/lib/builder.ts"
       ],
+      "/users/nick/projects/jfaf/node_modules/@types/mocha/index.d.ts": [
+        "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts",
+        "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "/users/nick/projects/jfaf/node_modules/@types/node/globals.d.ts": [
         "/users/nick/projects/jfaf/node_modules/@types/node/util.d.ts",
         "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts"
@@ -1188,6 +1240,12 @@
       "/users/nick/projects/jfaf/lib/types.ts",
       "/users/nick/projects/jfaf/lib/utils.ts",
       "/users/nick/projects/jfaf/lib/builder.ts",
+      "/users/nick/projects/jfaf/lib/builder.spec.ts",
+      "/users/nick/projects/jfaf/lib/index.ts",
+      "/users/nick/projects/jfaf/lib/index.spec.ts",
+      "/users/nick/projects/jfaf/lib/promisifiednode.spec.ts",
+      "/users/nick/projects/jfaf/lib/utils.spec.ts",
+      "/users/nick/projects/jfaf/node_modules/@types/mocha/index.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/globals.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/assert.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/async_hooks.d.ts",
@@ -1231,8 +1289,7 @@
       "/users/nick/projects/jfaf/node_modules/@types/node/base.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/globals.d.ts",
-      "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/index.d.ts",
-      "/users/nick/projects/jfaf/lib/index.ts"
+      "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/index.d.ts"
     ]
   },
   "version": "3.5.3"

@@ -1,7 +1,7 @@
 /// <reference types="node" />
 import * as fs from "fs";
 import { IAnyObject, IBuildOptions, IStatTransform } from "./types";
-export declare const defaultShouldIncludeFile: (dirent: fs.Dirent, absolutePath: string, options: IBuildOptions) => boolean;
+export declare const defaultShouldIncludeFile: (dirent?: fs.Dirent | undefined, absolutePath?: string | undefined, options?: IBuildOptions | undefined) => boolean;
 export declare const defaultIsMetaFile: (dirent: fs.Dirent, absolutePath: string, options: IBuildOptions) => boolean;
 export declare const isJsonFile: (dirent: fs.Dirent) => boolean;
 export declare const readFileContents: (absolutePath: string) => Promise<Buffer>;
