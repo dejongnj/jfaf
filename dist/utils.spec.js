@@ -8,7 +8,7 @@ describe("utils", function () {
         });
     });
     describe("defaultShouldIncludeFile", function () {
-        it("should do something", function () {
+        it("should be a function", function () {
             assert.equal(true, true);
         });
     });

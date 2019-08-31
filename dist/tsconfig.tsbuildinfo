@@ -154,7 +154,7 @@
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "/users/nick/projects/jfaf/lib/utils.spec.ts": {
-        "version": "fddd0bc8648b0c5c95749ac561aecfacc6c6301df89414ccbf403c6a8fc3f104",
+        "version": "acc12b4cd4c71a2df8a1b555737adbe30188e45b81b483bf8c415ccb304c6f99",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "/users/nick/projects/jfaf/node_modules/@types/mocha/index.d.ts": {
@@ -1244,7 +1244,6 @@
       "/users/nick/projects/jfaf/lib/index.ts",
       "/users/nick/projects/jfaf/lib/index.spec.ts",
       "/users/nick/projects/jfaf/lib/promisifiednode.spec.ts",
-      "/users/nick/projects/jfaf/lib/utils.spec.ts",
       "/users/nick/projects/jfaf/node_modules/@types/mocha/index.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/globals.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/assert.d.ts",
@@ -1289,7 +1288,8 @@
       "/users/nick/projects/jfaf/node_modules/@types/node/base.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/util.d.ts",
       "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/globals.d.ts",
-      "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/index.d.ts"
+      "/users/nick/projects/jfaf/node_modules/@types/node/ts3.2/index.d.ts",
+      "/users/nick/projects/jfaf/lib/utils.spec.ts"
     ]
   },
   "version": "3.5.3"

@@ -19,7 +19,7 @@ describe("utils", () => {
   });
 
   describe("defaultShouldIncludeFile", () => {
-    it("should do something", () => {
+    it("should be a function", () => {
       assert.equal(true, true);
     });
   });
