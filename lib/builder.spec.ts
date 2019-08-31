@@ -1,9 +1,12 @@
 import * as assert from "assert";
-import { expectArray, expectEqualStrings, expectLength, expectObjectToHaveKey } from "../test/testhelpers";
+import { expectArray, expectEqualStrings, expectLength,
+    expectObjectToHaveKey, keyTesterCreator, objectsArrayKeyMatchCreator } from "../test/testhelpers";
 import builder from "./builder";
 const TEST_FOLDER_1_PATH = "./test/test-folder-structures/testFolder1";
 
 const testFolderData = {
+  ROOT_FOLDER_CHILD_FOLDER_NAMES: ["child1", "child2", "child3"],
+  ROOT_FOLDER_FILENAMES: ["meta.json", "testFolder1-File1.md", "testFolder1-File2.md"],
   ROOT_FOLDER_FILES_LENGTH: 3,
   ROOT_FOLDER_FOLDERS_LENGTH: 3,
   ROOT_NAME: "testFolder1",
@@ -16,6 +19,10 @@ const DEFAULT_FILE_PROPS = [ "dev", "mode", "nlink", "uid", "gid", "rdev", "blks
   "size", "blocks", "atimeMs", "mtimeMs", "ctimeMs", "birthtimeMs", "atime", "mtime", "ctime",
   "birthtime", "name", "link",
 ];
+
+const eachFolderHasKeys = keyTesterCreator(DEFAULT_FOLDER_PROPS);
+const eachFileHasKeys = keyTesterCreator(DEFAULT_FILE_PROPS);
+const namePropertyCheck = objectsArrayKeyMatchCreator("name");
 
 describe("builder", () => {
   describe("builder && getFolderContents", () => {
@@ -41,11 +48,32 @@ describe("builder", () => {
         expectLength(folders, testFolderData.ROOT_FOLDER_FOLDERS_LENGTH);
       });
 
+      it("should contain an array of folders with basic info about each folder", async () => {
+        const { folders } = testFolder1;
+        eachFolderHasKeys(folders);
+      });
+
+      it("should contain correct folder namesin root folder folders array", () => {
+        const { folders } = testFolder1;
+        const folderNamesCheck = namePropertyCheck(testFolderData.ROOT_FOLDER_CHILD_FOLDER_NAMES);
+        assert(folders.every(folderNamesCheck), "root folder child folders name property should match");
+      });
+
       it("should contain a files Array with length 3", async () => {
         const { files } = testFolder1;
         expectArray(files, "files");
         expectLength(files, testFolderData.ROOT_FOLDER_FILES_LENGTH);
-        console.log(testFolder1);
+      });
+
+      it("should contain an array of files with basic info about each file", async () => {
+        const { files } = testFolder1;
+        eachFileHasKeys(files);
+      });
+
+      it("should contain correct file names in root folder files array", () => {
+        const { files } = testFolder1;
+        const fileNamesCheck = namePropertyCheck(testFolderData.ROOT_FOLDER_FILENAMES);
+        assert(files.every(fileNamesCheck), "root folder files name property should match");
       });
     });
   });
